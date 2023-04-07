@@ -110,9 +110,39 @@ public class Teams {
             ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
             // Each player
             for (Player player : teamPlayers) {
+                // Name
                 System.out.print("| ");
-                System.out.print(player.getName());
+                String name = player.getName();
+                System.out.print(name);
+                System.out.print(" ".repeat(21 - name.length()) + "| ");
+
+                // Credit
+                Double credit = player.getCredit();
+                System.out.print(formatted(credit));
+                System.out.print(" ".repeat(14 - credit.toString().length()) + "| ");
+
+                // Level
+                String level = player.getLevel();
+                System.out.print(level);
+                System.out.print(" ".repeat(13 - level.toString().length()) + "| ");
+
+                // Age
+                Integer age = player.getAge();
+                System.out.print(age);
+                System.out.print(" ".repeat(6 - age.toString().length()) + "| ");
+
+                // No
+                Integer no = player.getNo();
+                System.out.print(no);
+                System.out.print(" ".repeat(6 - no.toString().length()) + "| ");
+
+                // Team
+                System.out.print(team.getName());
+                System.out.println(team + " ".repeat(10 - team.getName().length()) + "|");
             }
+            // Print dividing line for end of team
+            System.out.println("+----------------------+----------------+--------------+-------+-------+-----------+");
         }
+        mainMenu();
     }
 }

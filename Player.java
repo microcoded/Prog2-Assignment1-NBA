@@ -38,4 +38,13 @@ public class Player {
     public String getName() {
         return this.name;
     }
+
+    public String getLevel() {
+        return this.level;
+    }
+
+    public Integer getNo() {
+        return this.No;
+    }
+
 }
