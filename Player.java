@@ -35,4 +35,7 @@ public class Player {
         return this.age;
     }
 
+    public String getName() {
+        return this.name;
+    }
 }

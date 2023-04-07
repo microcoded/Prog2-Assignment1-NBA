@@ -8,7 +8,7 @@ public class Association {
         season = new Season();
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         new Association().use();
     }
 

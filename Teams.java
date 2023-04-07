@@ -102,6 +102,17 @@ public class Teams {
     }
 
     public static void displayPlayers() {
-
+        System.out.println("+----------------------+----------------+--------------+-------+-------+-----------+\n" +
+                "| Player Name          | Credit         | Level        | Age   | No    | Team      |\n" +
+                "+----------------------+----------------+--------------+-------+-------+-----------+");
+        // Each team
+        for (Team team : teams) {
+            ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
+            // Each player
+            for (Player player : teamPlayers) {
+                System.out.print("| ");
+                System.out.print(player.getName());
+            }
+        }
     }
 }
