@@ -20,6 +20,7 @@ public class Player {
             this.level = "Core";
         } else if (credit >= 2000) {
             this.level = "All Star";
+
         }
     }
 
