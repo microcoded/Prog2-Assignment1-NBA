@@ -158,6 +158,7 @@ public class Teams {
             mainMenu();
         }
 
+        // Find the team that matches the name and delete it
         teams.removeIf(team -> (team.getName().equals(choice)));
         System.out.println("The team " + choice + " has been deleted.");
         mainMenu();
