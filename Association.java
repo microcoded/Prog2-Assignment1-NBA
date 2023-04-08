@@ -30,6 +30,10 @@ public class Association {
             case "X":
                 System.out.println("Done");
                 break;
+            default:
+                System.out.println("Please enter a number 1 or 2, or press X to exit.");
+                use();
+                break;
         }
     }
 }
