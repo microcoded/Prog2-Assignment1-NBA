@@ -18,4 +18,8 @@ public class Team {
         return players;
     }
 
+    @Override
+    public String toString() {
+        return "";
+    }
 }

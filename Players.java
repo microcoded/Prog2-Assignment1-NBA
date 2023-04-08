@@ -25,7 +25,7 @@ public class Players {
             Players.add(new Player("John Collins", 2000.0, 25, "Hawks", 20));
             Players.add(new Player("Aaron Holiday", 800.0, 26, "Hawks", 3));
             Players.add(new Player("Jalen Johnson", 1000.0, 21, "Hawks", 1));
-            Players.add(new Player("Trent Forest", 1200.0, 24, "Hawks", 2));
+            Players.add(new Player("Trent Forrest", 1200.0, 24, "Hawks", 2));
         }
 
         if (team.equals("Nets")) {
