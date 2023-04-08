@@ -35,6 +35,7 @@ public class Teams {
                 displayPlayers();
                 break;
             case "3":
+                // Add new team
                 addTeam();
                 break;
             case "4":
@@ -42,6 +43,7 @@ public class Teams {
                 break;
             case "5":
                 // Delete an existing team
+                deleteTeam();
                 break;
             case "6":
                 // Delete all players by a level
@@ -87,9 +89,9 @@ public class Teams {
         mainMenu();
     }
 
-    private static String formatted(double number) {
-        return new DecimalFormat("#####0.00").format(number);
-    }
+//    private static String formatted(double number) {
+//        return new DecimalFormat("#####0.00").format(number);
+//    }
 
     public static void displayPlayers() {
         // Display top header
@@ -144,5 +146,20 @@ public class Teams {
             if (team.getName().equals(teamName)) return true;
         }
         return false;
+    }
+
+    public static void deleteTeam() {
+        System.out.print("Please enter the team's name that you want to delete: ");
+        String choice = In.nextLine();
+
+        // If team doesn't exist, go to main menu
+        if(!teamExists(choice)) {
+            System.out.println("Team " + choice + " does not exist!");
+            mainMenu();
+        }
+
+        teams.removeIf(team -> (team.getName().equals(choice)));
+        System.out.println("The team " + choice + " has been deleted.");
+        mainMenu();
     }
 }
