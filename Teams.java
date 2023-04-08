@@ -54,18 +54,12 @@ public class Teams {
     }
 
     public static void displayTeams() {
-//        System.out.println("+----------------------+---------------------+-----------------------+--------------+\n" +
-//                "| Team Name            | Number of Players   | Average Player Credit | Average Age  |\n" +
-//                "+----------------------+---------------------+-----------------------+--------------+");
+        // Display header
         Utils.teamsHeader();
 
         for (Team team : teams) {
             // Team name
-//            System.out.print("| ");
             String teamName = team.getName();
-//            System.out.print(teamName);
-//            System.out.print(" ".repeat(21 - teamName.length()));
-//            System.out.print("| ");
 
             // Number of players
             ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
@@ -77,22 +71,14 @@ public class Teams {
                 avgCredit += player.getCredit();
                 avgAge += player.getAge();
             }
-//            System.out.print(playerCount + " " .repeat(20 - playerCount.toString().length()));
-//            System.out.print("| ");
 
             // Average player credit
             avgCredit = avgCredit / playerCount;
             if(Double.isNaN(avgCredit)) avgCredit = 0;
-//            System.out.print(formatted(avgCredit));
-//            System.out.print(" ".repeat(21 - Double.toString(avgCredit).length()));
-//            System.out.print("| ");
 
             // Average age
             avgAge = avgAge / playerCount;
             if(Double.isNaN(avgAge)) avgAge = 0;
-//            System.out.print(formatted(avgAge));
-//            System.out.print(" ".repeat(12 - Double.toString(avgAge).length()));
-//            System.out.println("|");
             System.out.format(Utils.teamsFormat,teamName,playerCount,avgCredit,avgAge);
         }
 
@@ -106,10 +92,7 @@ public class Teams {
     }
 
     public static void displayPlayers() {
-//        System.out.println("+----------------------+----------------+--------------+-------+-------+-----------+\n" +
-//                "| Player Name          | Credit         | Level        | Age   | No    | Team      |\n" +
-//                "+----------------------+----------------+--------------+-------+-------+-----------+");
-
+        // Display top header
         Utils.DisplayPlayerFromAllTeamsHeader();
 
         // Each team
@@ -118,38 +101,25 @@ public class Teams {
             // Each player
             for (Player player : teamPlayers) {
                 // Name
-//                System.out.print("| ");
                 String name = player.getName();
-//                System.out.print(name);
-//                System.out.print(" ".repeat(21 - name.length()) + "| ");
 
                 // Credit
                 Double credit = player.getCredit();
-//                System.out.print(formatted(credit));
-//                System.out.print(" ".repeat(14 - credit.toString().length()) + "| ");
 
                 // Level
                 String level = player.getLevel();
-//                System.out.print(level);
-//                System.out.print(" ".repeat(13 - level.toString().length()) + "| ");
 
                 // Age
                 Integer age = player.getAge();
-//                System.out.print(age);
-//                System.out.print(" ".repeat(6 - age.toString().length()) + "| ");
 
                 // No
                 Integer no = player.getNo();
-//                System.out.print(no);
-//                System.out.print(" ".repeat(6 - no.toString().length()) + "| ");
 
                 // Team
-//                System.out.print(team.getName());
-//                System.out.println(team + " ".repeat(10 - team.getName().length()) + "|");
-                System.out.format(Utils.DisplayPlayerFromAllTeamsFormat,name,credit,level,age,no,team.getName());
+                String teamName = team.getName();
+                System.out.format(Utils.DisplayPlayerFromAllTeamsFormat,name,credit,level,age,no,teamName);
             }
             // Print dividing line for end of team
-//            System.out.println("+----------------------+----------------+--------------+-------+-------+-----------+");
             Utils.DisplayPlayerFromAllTeamsEnd();
         }
         mainMenu();
