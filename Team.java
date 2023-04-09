@@ -22,4 +22,22 @@ public class Team {
     public String toString() {
         return "";
     }
+
+    public Double averageCredit() {
+        // Number of players
+        ArrayList<Player> teamPlayers = this.getPlayers().getPlayerList();
+        Integer playerCount = 0;
+
+        double avgCredit = 0;
+        for (Player player : teamPlayers) {
+            playerCount++;
+            avgCredit += player.getCredit();
+        }
+
+        // Average player credit
+        avgCredit = avgCredit / playerCount;
+        if(Double.isNaN(avgCredit)) avgCredit = 0;
+
+        return avgCredit;
+    }
 }
