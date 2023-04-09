@@ -414,4 +414,17 @@ public class Teams {
         teamsPage(team);
     }
 
+    public static ArrayList<Team> getTeamsList() {
+        return teams;
+    }
+
+    public static Team getTeam(String teamName) {
+        for (Team team : teams) {
+            if (team.getName().equals(teamName)) {
+                return team;
+            }
+        }
+        return null;
+    }
+
 }

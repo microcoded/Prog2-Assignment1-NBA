@@ -25,7 +25,7 @@ public class Association {
                 Teams.mainMenu();
                 break;
             case "2":
-                // Season
+                Season.mainMenu();
                 break;
             case "X":
                 System.out.println("Done");
