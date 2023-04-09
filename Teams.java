@@ -310,7 +310,7 @@ public class Teams {
             // Each player
             for (Player player : teamPlayers) {
                 // If number is found
-                if(No == player.getNo()) {
+                if(No.equals(player.getNo())) {
                     System.out.print("This No has been occupied by: " + player.getName() + ". Please re-enter the No: ");
                     No = In.nextInt();
                     NoExists = true;
