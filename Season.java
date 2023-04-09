@@ -130,6 +130,7 @@ public class Season {
         Team winTeam;
         Team loseTeam;
         String champion = "";
+        double difference;
 
         if (schedule.isEmpty()) mainMenu();
 
@@ -162,6 +163,11 @@ public class Season {
                     currentTeamList.add(winTeam);
                 }
                 champion = winTeam.getName();
+
+
+                // Update credit
+                updateCredit(winTeam, loseTeam);
+
             }
             System.out.println("All games finished! You can use 4 to check the results.");
         } else {
@@ -183,6 +189,24 @@ public class Season {
         }
 
         mainMenu();
+    }
+
+    private static void updateCredit(Team winTeam, Team loseTeam) {
+        Double difference = winTeam.averageCredit() - loseTeam.averageCredit();
+
+        ArrayList<Player> winTeamPlayers = winTeam.getPlayers().getPlayerList();
+        ArrayList<Player> loseTeamPlayers = loseTeam.getPlayers().getPlayerList();
+
+        for (Player player : winTeamPlayers) {
+            player.setCredit(player.getCredit() + (difference / 5));
+        }
+
+        for (Player player : loseTeamPlayers) {
+            player.setCredit(player.getCredit() + (difference / 5));
+        }
+
+        winTeam.getPlayers().setPlayerList(winTeamPlayers);
+        loseTeam.getPlayers().setPlayerList(loseTeamPlayers);
     }
 
     public static void displayResults() {

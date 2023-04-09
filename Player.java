@@ -23,8 +23,8 @@ public class Player {
         }
     }
 
-    public String getTeam() {
-        return this.team;
+    public void setCredit (Double credit) {
+        this.credit = credit;
     }
 
     public Double getCredit() {
