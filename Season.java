@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Season {
     private static ArrayList<Game> schedule;
     private static ArrayList<Team> currentTeamList;
-
     private static ArrayList<Record> records;
 
     // Takes no parameters
@@ -130,7 +129,6 @@ public class Season {
         Team winTeam;
         Team loseTeam;
         String champion = "";
-        double difference;
 
         if (schedule.isEmpty()) mainMenu();
 
@@ -204,9 +202,6 @@ public class Season {
         for (Player player : loseTeamPlayers) {
             player.setCredit(player.getCredit() + (difference / 5));
         }
-
-        winTeam.getPlayers().setPlayerList(winTeamPlayers);
-        loseTeam.getPlayers().setPlayerList(loseTeamPlayers);
     }
 
     public static void displayResults() {

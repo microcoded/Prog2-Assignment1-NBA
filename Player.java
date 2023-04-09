@@ -25,6 +25,15 @@ public class Player {
 
     public void setCredit (Double credit) {
         this.credit = credit;
+        if (credit < 1000 ) {
+            this.level = "Edge";
+        } else if (credit >= 1000 && credit < 1500) {
+            this.level = "Common";
+        } else if (credit >= 1500 && credit < 2000) {
+            this.level = "Core";
+        } else if (credit >= 2000) {
+            this.level = "All Star";
+        }
     }
 
     public Double getCredit() {
