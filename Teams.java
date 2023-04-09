@@ -324,6 +324,56 @@ public class Teams {
     }
 
     private static void teamUpdatePlayer(Team team) {
+        System.out.print("Please enter the player's name: ");
+        String name = In.nextLine();
+
+        // Finding if the player we want to update exists
+        boolean playerExists = false;
+        int playerIndex = 0;
+        ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
+        for (int i = 0; i < teamPlayers.size(); i++) {
+            Player player = teamPlayers.get(i);
+            if (player.getName().toLowerCase().equals(name.toLowerCase())) {
+                playerExists = true;
+                playerIndex = i;
+            }
+        }
+
+        // Go back if player does not exist, otherwise continue
+        if (!playerExists) {
+            System.out.println("Player does not exist.");
+        } else {
+            System.out.print("Please enter the name: ");
+            String newName = In.nextLine();
+            System.out.print("Please enter the credit: ");
+            Double credit = In.nextDouble();
+            System.out.print("Please enter the age: ");
+            Integer age = In.nextInt();
+            System.out.print("Please enter the No: ");
+            Integer No = In.nextInt();
+
+            // Check if No already exists in team
+            boolean NoExists = true;
+            while(NoExists) {
+                NoExists = false;
+                // Each player
+                for (Player player : teamPlayers) {
+                    // If number is found
+                    if(No.equals(player.getNo())) {
+                        System.out.print("This No has been occupied by: " + player.getName() + ". Please re-enter the No: ");
+                        No = In.nextInt();
+                        NoExists = true;
+                        break;
+                    }
+                }
+            }
+
+            // Update player information
+            teamPlayers.set(playerIndex, new Player(newName, credit, age, team.getName(), No));
+            System.out.println("Player information updated.");
+        }
+        // Go back
+        teamsPage(team);
     }
 
     private static void teamDeletePlayer(Team team) {
