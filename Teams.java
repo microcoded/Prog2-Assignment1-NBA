@@ -40,6 +40,7 @@ public class Teams {
                 break;
             case "4":
                 // Manage existing team
+                manageTeam();
                 break;
             case "5":
                 // Delete an existing team
@@ -55,7 +56,7 @@ public class Teams {
         }
     }
 
-    public static void displayTeams() {
+    private static void displayTeams() {
         // Display header
         Utils.teamsHeader();
 
@@ -89,11 +90,7 @@ public class Teams {
         mainMenu();
     }
 
-//    private static String formatted(double number) {
-//        return new DecimalFormat("#####0.00").format(number);
-//    }
-
-    public static void displayPlayers() {
+    private static void displayPlayers() {
         // Display top header
         Utils.DisplayPlayerFromAllTeamsHeader();
 
@@ -127,7 +124,7 @@ public class Teams {
         mainMenu();
     }
 
-    public static void addTeam() {
+    private static void addTeam() {
         System.out.print("Please enter the name of the team: ");
         String choice = In.nextLine();
 
@@ -148,7 +145,7 @@ public class Teams {
         return false;
     }
 
-    public static void deleteTeam() {
+    private static void deleteTeam() {
         System.out.print("Please enter the team's name that you want to delete: ");
         String choice = In.nextLine();
 
@@ -163,4 +160,65 @@ public class Teams {
         System.out.println("The team " + choice + " has been deleted.");
         mainMenu();
     }
+
+    private static void manageTeam() {
+        System.out.print("Please enter the team's name that you want to manage: ");
+        String choice = In.nextLine();
+
+        // If team doesn't exist, go to main menu
+        if(!teamExists(choice)) {
+            System.out.println("Team " + choice + " does not exist!");
+            mainMenu();
+        }
+
+        // Find the team that matches the name and open teams page
+        for (Team team : teams) {
+            if(team.getName().equals(choice)) {
+                teamsPage(team);
+                break;
+            }
+        }
+    }
+
+    private static void teamsPage(Team team) {
+        System.out.println("Welcome to the " + team.getName() + " 's Page! Please make a selection from the menu:\n" +
+                "1. Display team's players.\n" +
+                "2. Add a new player.\n" +
+                "3. Update an existing player.\n" +
+                "4. Delete an existing player.\n" +
+                "R. Return to previous menu.");
+        System.out.print("Enter a choice: ");
+        String input = In.nextLine();
+
+        switch(input) {
+            case "1":
+                teamDisplayPlayers();
+                break;
+            case "2":
+                teamAddPlayer();
+                break;
+            case "3":
+                teamUpdatePlayer();
+                break;
+            case "4":
+                teamDeletePlayer();
+                break;
+            case "R":
+                mainMenu();
+                break;
+        }
+    }
+
+    private static void teamDisplayPlayers() {
+    }
+
+    private static void teamAddPlayer() {
+    }
+
+    private static void teamUpdatePlayer() {
+    }
+
+    private static void teamDeletePlayer() {
+    }
+
 }
