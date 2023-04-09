@@ -56,6 +56,10 @@ public class Season {
             case "R":
                 new Association().use();
                 break;
+            default:
+                System.out.println("Please enter a number between 1 and 4 or press R to return to the previous menu.");
+                mainMenu();
+                break;
         }
     }
 
