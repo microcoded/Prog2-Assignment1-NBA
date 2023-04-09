@@ -231,8 +231,7 @@ public class Teams {
             // No
             Integer no = player.getNo();
 
-            // Team
-            String teamName = team.getName();
+            // Output
             System.out.format(Utils.PlayerFormat,name,credit,level,no,age);
         }
         // Print dividing line for end of team
