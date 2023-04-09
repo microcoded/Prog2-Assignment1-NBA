@@ -17,7 +17,7 @@ public class Teams {
         // Add team if it does not already exist to avoid duplicates when entering from Association
         for (Team team : teams) {
             if (team.getName().equals(teamName)) {
-                // Do nothing and continue if the team exists
+                // Do nothing and exit if the team exists
                 return;
             }
         }
