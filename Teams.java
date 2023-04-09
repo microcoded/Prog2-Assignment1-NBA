@@ -167,7 +167,7 @@ public class Teams {
 
         // If team doesn't exist, go to main menu
         if(!teamExists(choice)) {
-            System.out.println("Team " + choice + " does not exist!");
+            System.out.println("Team does not exist!");
             mainMenu();
         }
 
@@ -192,16 +192,16 @@ public class Teams {
 
         switch(input) {
             case "1":
-                teamDisplayPlayers();
+                teamDisplayPlayers(team);
                 break;
             case "2":
-                teamAddPlayer();
+                teamAddPlayer(team);
                 break;
             case "3":
-                teamUpdatePlayer();
+                teamUpdatePlayer(team);
                 break;
             case "4":
-                teamDeletePlayer();
+                teamDeletePlayer(team);
                 break;
             case "R":
                 mainMenu();
@@ -209,16 +209,44 @@ public class Teams {
         }
     }
 
-    private static void teamDisplayPlayers() {
+    private static void teamDisplayPlayers(Team team) {
+        // Display top header
+        Utils.playerHeader();
+
+        ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
+        // Each player
+        for (Player player : teamPlayers) {
+            // Name
+            String name = player.getName();
+
+            // Credit
+            Double credit = player.getCredit();
+
+            // Level
+            String level = player.getLevel();
+
+            // Age
+            Integer age = player.getAge();
+
+            // No
+            Integer no = player.getNo();
+
+            // Team
+            String teamName = team.getName();
+            System.out.format(Utils.PlayerFormat,name,credit,level,no,age);
+        }
+        // Print dividing line for end of team
+        Utils.playerTableEnd();
+        teamsPage(team);
     }
 
-    private static void teamAddPlayer() {
+    private static void teamAddPlayer(Team team) {
     }
 
-    private static void teamUpdatePlayer() {
+    private static void teamUpdatePlayer(Team team) {
     }
 
-    private static void teamDeletePlayer() {
+    private static void teamDeletePlayer(Team team) {
     }
 
 }
