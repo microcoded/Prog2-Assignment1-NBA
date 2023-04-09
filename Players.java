@@ -45,4 +45,8 @@ public class Players {
         Players.add(new Player(name, credit, age, team, No));
     }
 
+    public void deletePlayer(Player delPlayer) {
+        Players.removeIf(player -> (player == delPlayer));
+    }
+
 }

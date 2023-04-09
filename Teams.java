@@ -7,10 +7,21 @@ public class Teams {
 
     // Takes no parameters
     public Teams() {
-        teams.add(new Team("Suns"));
-        teams.add(new Team("Bulls"));
-        teams.add(new Team("Hawks"));
-        teams.add(new Team("Nets"));
+        addTeam("Suns");
+        addTeam("Bulls");
+        addTeam("Hawks");
+        addTeam("Nets");
+    }
+
+    public void addTeam(String teamName) {
+        // Add team if it does not already exist to avoid duplicates when entering from Association
+        for (Team team : teams) {
+            if (team.getName().equals(teamName)) {
+                // Do nothing and continue if the team exists
+                return;
+            }
+        }
+        teams.add(new Team(teamName));
     }
 
     public static void mainMenu() {
@@ -181,7 +192,7 @@ public class Teams {
         }
     }
 
-    private static void displayLevel() {
+        private static void displayLevel() {
          ArrayList<String> levels = new ArrayList<>();
          levels.add("Edge");
          levels.add("Common");
@@ -377,6 +388,30 @@ public class Teams {
     }
 
     private static void teamDeletePlayer(Team team) {
+        System.out.print("Please enter the player's name: ");
+        String name = In.nextLine();
+
+        // Finding if the player we want to delete exists
+        boolean playerExists = false;
+        int playerIndex = 0;
+        ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
+        for (int i = 0; i < teamPlayers.size(); i++) {
+            Player player = teamPlayers.get(i);
+            if (player.getName().toLowerCase().equals(name.toLowerCase())) {
+                playerExists = true;
+                playerIndex = i;
+            }
+        }
+        // Go back if player does not exist, otherwise continue
+        if (!playerExists) {
+            System.out.println("Player does not exist.");
+        } else {
+            // Delete player
+            team.getPlayers().deletePlayer(teamPlayers.get(playerIndex));
+            System.out.println("Player deleted.");
+        }
+        // Go back
+        teamsPage(team);
     }
 
 }
