@@ -41,4 +41,8 @@ public class Players {
         return Players;
     }
 
+    public void addPlayer(String name, Double credit, Integer age, String team, Integer No) {
+        Players.add(new Player(name, credit, age, team, No));
+    }
+
 }

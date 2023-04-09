@@ -293,6 +293,34 @@ public class Teams {
     }
 
     private static void teamAddPlayer(Team team) {
+        System.out.print("Please enter the player's name: ");
+        String name = In.nextLine();
+        System.out.print("Please enter the player's credit: ");
+        Double credit = In.nextDouble();
+        System.out.print("Please enter the player's age: ");
+        Integer age = In.nextInt();
+        System.out.print("Please enter the player's No: ");
+        Integer No = In.nextInt();
+
+        // Check if No already exists in team
+        ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
+        boolean NoExists = true;
+        while(NoExists) {
+            NoExists = false;
+            // Each player
+            for (Player player : teamPlayers) {
+                // If number is found
+                if(No == player.getNo()) {
+                    System.out.print("This No has been occupied by: " + player.getName() + ". Please re-enter the No: ");
+                    No = In.nextInt();
+                    NoExists = true;
+                    break;
+                }
+            }
+        }
+        team.getPlayers().addPlayer(name, credit, age, team.getName(), No);
+        System.out.println("Player " + name + " added!");
+        teamsPage(team);
     }
 
     private static void teamUpdatePlayer(Team team) {
