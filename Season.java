@@ -1,15 +1,12 @@
 import java.util.ArrayList;
 
 public class Season {
-    private static ArrayList<Game> schedule;
+    private static ArrayList<Game> schedule = new ArrayList<>();
     private static ArrayList<Team> currentTeamList;
-    private static ArrayList<Record> records;
+    private static ArrayList<Record> records = new ArrayList<>();
 
     // Takes no parameters
     public Season() {
-        schedule = new ArrayList<>();
-        records = new ArrayList<>();
-
         currentTeamList = Teams.getTeamsList();
         for (int i = 0; i < (currentTeamList.size() / 2) + 1; i++) {
             addGame(i + 1);
@@ -110,13 +107,15 @@ public class Season {
         Game game;
         // Display header
         Utils.GameHeader();
-        for (int i = 1; i < schedule.size(); i++) {
-            game = schedule.get(i);
-            teams = game.getTeams();
-            team1 = teams.get(0).getName();
-            team2 = teams.get(1).getName();
-            System.out.format(Utils.GamesFormat, team1, " vs ", team2);
-        }
+            for (int i = 1; i < schedule.size(); i++) {
+                game = schedule.get(i);
+                teams = game.getTeams();
+                if (teams.size() > 0) {
+                    team1 = teams.get(0).getName();
+                    team2 = teams.get(1).getName();
+                    System.out.format(Utils.GamesFormat, team1, " vs ", team2);
+                }
+            }
 
         // Bottom of display
         Utils.GameEnd();
