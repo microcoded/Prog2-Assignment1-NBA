@@ -47,7 +47,8 @@ public class Teams {
                 deleteTeam();
                 break;
             case "6":
-                // Delete all players by a level
+                // Display all players by a level
+                displayLevel();
                 break;
             case "R":
                 new Association().use();
@@ -178,6 +179,58 @@ public class Teams {
                 break;
             }
         }
+    }
+
+    private static void displayLevel() {
+         ArrayList<String> levels = new ArrayList<>();
+         levels.add("Edge");
+         levels.add("Common");
+         levels.add("Core");
+         levels.add("All Star");
+
+        System.out.print("Please enter the player's level that you want to view: ");
+        String choice = In.nextLine();
+
+        while (!levels.contains(choice)) {
+            System.out.print("No such level! Please re-enter the level: ");
+            choice = In.nextLine();
+        }
+
+        // Display top header
+        Utils.DisplayPlayerFromAllTeamsHeader();
+
+        // Each team
+        for (Team team : teams) {
+            ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
+            // Each player
+            for (Player player : teamPlayers) {
+                // Level
+                String level = player.getLevel();
+
+                if (level.equals(choice)) {
+
+                    // Name
+                    String name = player.getName();
+
+                    // Credit
+                    Double credit = player.getCredit();
+
+                    // Age
+                    Integer age = player.getAge();
+
+                    // No
+                    Integer no = player.getNo();
+
+                    // Team
+                    String teamName = team.getName();
+                    System.out.format(Utils.DisplayPlayerFromAllTeamsFormat, name, credit, level, age, no, teamName);
+                }
+            }
+        }
+        // Print bottom line
+        Utils.DisplayPlayerFromAllTeamsEnd();
+
+        mainMenu();
     }
 
     private static void teamsPage(Team team) {
