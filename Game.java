@@ -8,8 +8,8 @@ public class Game {
 
     public Game(Integer term) {
         this.term = term;
-        this.teams = new ArrayList<Team>();
-        this.results = new ArrayList<Team>();
+        this.teams = new ArrayList<>();
+        this.results = new ArrayList<>();
     }
 
     public Integer getTerm() {
@@ -25,8 +25,7 @@ public class Game {
     }
 
     public boolean hasTeams() {
-        if (teams.size() > 0) return true;
-        return false;
+        return teams.size() > 0;
     }
 }
 

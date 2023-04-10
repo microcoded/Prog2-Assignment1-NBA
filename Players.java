@@ -24,10 +24,6 @@ public class Players {
         return Players;
     }
 
-    public void setPlayers(ArrayList<Player> list) {
-        this.Players = list;
-    }
-
     public void addPlayer(String name, Double credit, Integer age, String team, Integer No) {
         Players.add(new Player(name, credit, age, team, No));
     }
