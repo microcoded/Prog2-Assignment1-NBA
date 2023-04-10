@@ -95,7 +95,7 @@ public class Season {
                 currentTeamList.removeIf(team -> (team.equals(scheduleTeam)));
 
                 // Output
-                System.out.println("Team " + scheduleTeamName + " has been added at the Game " + Math.round(Math.ceil(gameNo/2)) + " position " + pos);
+                System.out.println("Team " + scheduleTeamName + " has been added at the Game " + Math.round(Math.ceil(gameNo / 2)) + " position " + pos);
                 if (pos == 1) {
                     pos++;
                 } else if (pos == 2) {
@@ -114,15 +114,15 @@ public class Season {
         Game game;
         // Display header
         Utils.GameHeader();
-            for (int i = 1; i < schedule.size(); i++) {
-                game = schedule.get(i);
-                teams = game.getTeams();
-                if (teams.size() > 0) {
-                    team1 = teams.get(0).getName();
-                    team2 = teams.get(1).getName();
-                    System.out.format(Utils.GamesFormat, team1, " vs ", team2);
-                }
+        for (int i = 1; i < schedule.size(); i++) {
+            game = schedule.get(i);
+            teams = game.getTeams();
+            if (teams.size() > 0) {
+                team1 = teams.get(0).getName();
+                team2 = teams.get(1).getName();
+                System.out.format(Utils.GamesFormat, team1, " vs ", team2);
             }
+        }
 
         // Bottom of display
         Utils.GameEnd();

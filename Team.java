@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Team {
     private final String name;
-    private Players players = new Players(new ArrayList<Player>());
+    private Players players = new Players(new ArrayList<>());
 
 
     public Team(String name) {
@@ -72,7 +72,7 @@ public class Team {
 
         // Average player credit
         avgCredit = avgCredit / playerCount;
-        if(Double.isNaN(avgCredit)) avgCredit = 0;
+        if (Double.isNaN(avgCredit)) avgCredit = 0;
 
         return avgCredit;
     }

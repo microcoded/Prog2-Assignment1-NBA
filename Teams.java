@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Teams {
     public static ArrayList<Team> teams = new ArrayList<>();
@@ -35,7 +36,7 @@ public class Teams {
         System.out.print("Enter a choice: ");
         String input = In.nextLine();
 
-        switch(input) {
+        switch (input) {
             case "1":
                 displayTeams();
                 break;
@@ -87,12 +88,12 @@ public class Teams {
 
             // Average player credit
             avgCredit = avgCredit / playerCount;
-            if(Double.isNaN(avgCredit)) avgCredit = 0;
+            if (Double.isNaN(avgCredit)) avgCredit = 0;
 
             // Average age
             avgAge = avgAge / playerCount;
-            if(Double.isNaN(avgAge)) avgAge = 0;
-            System.out.format(Utils.teamsFormat,teamName,playerCount,avgCredit,avgAge);
+            if (Double.isNaN(avgAge)) avgAge = 0;
+            System.out.format(Utils.teamsFormat, teamName, playerCount, avgCredit, avgAge);
         }
 
         // Line at the bottom
@@ -126,7 +127,7 @@ public class Teams {
 
                 // Team
                 String teamName = team.getName();
-                System.out.format(Utils.DisplayPlayerFromAllTeamsFormat,name,credit,level,age,no,teamName);
+                System.out.format(Utils.DisplayPlayerFromAllTeamsFormat, name, credit, level, age, no, teamName);
             }
             // Print dividing line for end of team
             Utils.DisplayPlayerFromAllTeamsEnd();
@@ -139,7 +140,7 @@ public class Teams {
         String choice = In.nextLine();
 
         // While team already exists, get a new name
-        while(teamExists(choice)) {
+        while (teamExists(choice)) {
             System.out.print("Team " + choice + " already exist! Please enter a new name: ");
             choice = In.nextLine();
         }
@@ -160,7 +161,7 @@ public class Teams {
         String choice = In.nextLine();
 
         // If team doesn't exist, go to main menu
-        if(!teamExists(choice)) {
+        if (!teamExists(choice)) {
             System.out.println("Team " + choice + " does not exist!");
             mainMenu();
         }
@@ -176,26 +177,26 @@ public class Teams {
         String choice = In.nextLine();
 
         // If team doesn't exist, go to main menu
-        if(!teamExists(choice)) {
+        if (!teamExists(choice)) {
             System.out.println("Team does not exist!");
             mainMenu();
         }
 
         // Find the team that matches the name and open teams page
         for (Team team : teams) {
-            if(team.getName().equals(choice)) {
+            if (team.getName().equals(choice)) {
                 teamsPage(team);
                 break;
             }
         }
     }
 
-        private static void displayLevel() {
-         ArrayList<String> levels = new ArrayList<>();
-         levels.add("Edge");
-         levels.add("Common");
-         levels.add("Core");
-         levels.add("All Star");
+    private static void displayLevel() {
+        ArrayList<String> levels = new ArrayList<>();
+        levels.add("Edge");
+        levels.add("Common");
+        levels.add("Core");
+        levels.add("All Star");
 
         System.out.print("Please enter the player's level that you want to view: ");
         String choice = In.nextLine();
@@ -252,7 +253,7 @@ public class Teams {
         System.out.print("Enter a choice: ");
         String input = In.nextLine();
 
-        switch(input) {
+        switch (input) {
             case "1":
                 teamDisplayPlayers(team);
                 break;
@@ -294,7 +295,7 @@ public class Teams {
             Integer no = player.getNo();
 
             // Output
-            System.out.format(Utils.PlayerFormat,name,credit,level,no,age);
+            System.out.format(Utils.PlayerFormat, name, credit, level, no, age);
         }
         // Print dividing line for end of team
         Utils.playerTableEnd();
@@ -313,40 +314,35 @@ public class Teams {
 
         // Check if No already exists in team
         ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
-        boolean NoExists = true;
-        while(NoExists) {
-            NoExists = false;
-            // Each player
-            for (Player player : teamPlayers) {
-                // If number is found
-                if(No.equals(player.getNo())) {
-                    System.out.print("This No has been occupied by: " + player.getName() + ". Please re-enter the No: ");
-                    No = In.nextInt();
-                    NoExists = true;
-                    break;
-                }
-            }
-        }
+        No = getUniqueNo(No, teamPlayers);
         team.getPlayers().addPlayer(name, credit, age, team.getName(), No);
         System.out.println("Player " + name + " added!");
         teamsPage(team);
     }
 
-    private static void teamUpdatePlayer(Team team) {
-        System.out.print("Please enter the player's name: ");
-        String name = In.nextLine();
-
-        // Finding if the player we want to update exists
-        boolean playerExists = false;
-        int playerIndex = 0;
-        ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
-        for (int i = 0; i < teamPlayers.size(); i++) {
-            Player player = teamPlayers.get(i);
-            if (player.getName().equalsIgnoreCase(name)) {
-                playerExists = true;
-                playerIndex = i;
+    private static Integer getUniqueNo(Integer no, ArrayList<Player> teamPlayers) {
+        boolean NoExists = true;
+        while (NoExists) {
+            NoExists = false;
+            // Each player
+            for (Player player : teamPlayers) {
+                // If number is found
+                if (no.equals(player.getNo())) {
+                    System.out.print("This No has been occupied by: " + player.getName() + ". Please re-enter the No: ");
+                    no = In.nextInt();
+                    NoExists = true;
+                    break;
+                }
             }
         }
+        return no;
+    }
+
+    private static void teamUpdatePlayer(Team team) {
+        ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
+        Object[][] playerLocation = playerExists(team);
+        boolean playerExists = (boolean) playerLocation[0][0];
+        int playerIndex = (int) playerLocation[0][1];
 
         // Go back if player does not exist, otherwise continue
         if (!playerExists) {
@@ -362,20 +358,7 @@ public class Teams {
             Integer No = In.nextInt();
 
             // Check if No already exists in team
-            boolean NoExists = true;
-            while(NoExists) {
-                NoExists = false;
-                // Each player
-                for (Player player : teamPlayers) {
-                    // If number is found
-                    if(No.equals(player.getNo())) {
-                        System.out.print("This No has been occupied by: " + player.getName() + ". Please re-enter the No: ");
-                        No = In.nextInt();
-                        NoExists = true;
-                        break;
-                    }
-                }
-            }
+            No = getUniqueNo(No, teamPlayers);
 
             // Update player information
             teamPlayers.set(playerIndex, new Player(newName, credit, age, team.getName(), No));
@@ -386,20 +369,11 @@ public class Teams {
     }
 
     private static void teamDeletePlayer(Team team) {
-        System.out.print("Please enter the player's name: ");
-        String name = In.nextLine();
-
-        // Finding if the player we want to delete exists
-        boolean playerExists = false;
-        int playerIndex = 0;
         ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
-        for (int i = 0; i < teamPlayers.size(); i++) {
-            Player player = teamPlayers.get(i);
-            if (player.getName().equalsIgnoreCase(name)) {
-                playerExists = true;
-                playerIndex = i;
-            }
-        }
+        Object[][] playerLocation = playerExists(team);
+        boolean playerExists = (boolean) playerLocation[0][0];
+        int playerIndex = (int) playerLocation[0][1];
+
         // Go back if player does not exist, otherwise continue
         if (!playerExists) {
             System.out.println("Player does not exist.");
@@ -410,6 +384,27 @@ public class Teams {
         }
         // Go back
         teamsPage(team);
+    }
+
+    private static Object[][] playerExists(Team team) {
+        System.out.print("Please enter the player's name: ");
+        String name = In.nextLine();
+
+        // Finding if the player we want exists
+        boolean playerExists = false;
+        int playerIndex = 0;
+        ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
+        for (int i = 0; i < teamPlayers.size(); i++) {
+            Player player = teamPlayers.get(i);
+            if (player.getName().equalsIgnoreCase(name)) {
+                playerExists = true;
+                playerIndex = i;
+            }
+        }
+        Object[][] playerLocation = new Object[1][2];
+        playerLocation[0][0] = playerExists;
+        playerLocation[0][1] = playerIndex;
+        return playerLocation;
     }
 
     public static ArrayList<Team> getTeamsList() {

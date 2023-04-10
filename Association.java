@@ -20,7 +20,7 @@ public class Association {
         System.out.print("Enter a choice: ");
         String input = In.nextLine();
 
-        switch(input) {
+        switch (input) {
             case "1":
                 Teams.mainMenu();
                 break;
@@ -45,7 +45,7 @@ public class Association {
         System.out.print("Enter a choice: ");
         String input = In.nextLine();
 
-        switch(input) {
+        switch (input) {
             case "1":
                 Teams.mainMenu();
                 break;

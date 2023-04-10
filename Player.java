@@ -5,6 +5,7 @@ public class Player {
     private Integer age;
     private String team;
     private Integer No;
+
     public Player(String name, Double credit, Integer age, String team, Integer No) {
         this.name = name;
         this.credit = credit;
@@ -12,7 +13,7 @@ public class Player {
         this.No = No;
         this.team = team;
 
-        if (credit < 1000 ) {
+        if (credit < 1000) {
             this.level = "Edge";
         } else if (credit >= 1000 && credit < 1500) {
             this.level = "Common";
@@ -25,7 +26,7 @@ public class Player {
 
     public void setCredit(Double credit) {
         this.credit = credit;
-        if (credit < 1000 ) {
+        if (credit < 1000) {
             this.level = "Edge";
         } else if (credit >= 1000 && credit < 1500) {
             this.level = "Common";
