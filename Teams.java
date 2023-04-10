@@ -62,7 +62,7 @@ public class Teams {
                 displayLevel();
                 break;
             case "R":
-                new Association().use();
+                Association.user();
                 break;
 
         }
@@ -434,17 +434,11 @@ public class Teams {
         ArrayList<Player> loseTeamPlayers = loseTeam.getPlayers().getPlayerList();
 
         for (int i = 0; i < winTeamPlayers.size(); i++) {
-            System.out.println("winTeam Player " + winTeamPlayers.get(i).getName() + " credit before: " + winTeamPlayers.get(i).getCredit());
-//            winTeamPlayers.set(i, new Player(winTeamPlayers.get(i).getName(), winTeamPlayers.get(i).getCredit() + (difference / 5), winTeamPlayers.get(i).getAge(), winTeam.getName(), winTeamPlayers.get(i).getNo()));
             winTeamPlayers.get(i).setCredit(winTeamPlayers.get(i).getCredit() + (difference / 5));
-            System.out.println("winTeam Player " + winTeamPlayers.get(i).getName() + " credit after: " + winTeamPlayers.get(i).getCredit());
         }
 
         for (int i = 0; i < loseTeamPlayers.size(); i++) {
-            System.out.println("loseTeam Player " + loseTeamPlayers.get(i).getName() + " credit before: " + loseTeamPlayers.get(i).getCredit());
-//            loseTeamPlayers.set(i, new Player(loseTeamPlayers.get(i).getName(), loseTeamPlayers.get(i).getCredit() + (difference / 5), loseTeamPlayers.get(i).getAge(), loseTeam.getName(), loseTeamPlayers.get(i).getNo()));
             loseTeamPlayers.get(i).setCredit(loseTeamPlayers.get(i).getCredit() + (difference / 5));
-            System.out.println("loseTeam Player " + loseTeamPlayers.get(i).getName() + " credit after: " + loseTeamPlayers.get(i).getCredit());
         }
 
         winTeam.setPlayers(winTeamPlayers);

@@ -7,7 +7,7 @@ public class Season {
 
     // Takes no parameters
     public Season() {
-        currentTeamList = Teams.getTeamsList();
+        currentTeamList = new ArrayList<>(Teams.getTeamsList());
         for (int i = 0; i < (currentTeamList.size() / 2) + 1; i++) {
             addGame(i + 1);
         }
@@ -53,7 +53,7 @@ public class Season {
                 displayResults();
                 break;
             case "R":
-                new Association().use();
+                Association.user();
                 break;
             default:
                 System.out.println("Please enter a number between 1 and 4 or press R to return to the previous menu.");
@@ -78,7 +78,13 @@ public class Season {
             System.out.println("Please enter the team's name that you want to schedule: ");
             scheduleTeamName = In.nextLine();
             Team scheduleTeam = Teams.getTeam(scheduleTeamName);
-            if (scheduleTeam == null) {
+            boolean found = false;
+            for (Team team : currentTeamList) {
+                if (scheduleTeam == team) {
+                    found = true;
+                }
+            }
+            if (!found) {
                 // Team doesn't exist
                 System.out.println("No such team! Please try again");
             } else {
@@ -174,7 +180,6 @@ public class Season {
         schedule.clear();
 
         // Resize
-        currentTeamList = Teams.getTeamsList();
         for (int i = 0; i < (currentTeamList.size() / 2) + 1; i++) {
             addGame(i + 1);
         }
@@ -186,21 +191,6 @@ public class Season {
 
         mainMenu();
     }
-
-//    private static void updateCredit(Team winTeam, Team loseTeam) {
-//        Double difference = winTeam.averageCredit() - loseTeam.averageCredit();
-//
-//        ArrayList<Player> winTeamPlayers = winTeam.getPlayers().getPlayerList();
-//        ArrayList<Player> loseTeamPlayers = loseTeam.getPlayers().getPlayerList();
-//
-//        for (Player player : winTeamPlayers) {
-//            player.setCredit(player.getCredit() + (difference / 5));
-//        }
-//
-//        for (Player player : loseTeamPlayers) {
-//            player.setCredit(player.getCredit() + (difference / 5));
-//        }
-//    }
 
     public static void displayResults() {
         // Header
