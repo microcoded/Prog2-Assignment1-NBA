@@ -23,7 +23,7 @@ public class Player {
         }
     }
 
-    public void setCredit (Double credit) {
+    public void setCredit(Double credit) {
         this.credit = credit;
         if (credit < 1000 ) {
             this.level = "Edge";

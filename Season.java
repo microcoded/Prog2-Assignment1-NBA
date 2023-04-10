@@ -161,9 +161,8 @@ public class Season {
                 }
                 champion = winTeam.getName();
 
-
                 // Update credit
-                Team.updateCredit(winTeam, loseTeam);
+                Teams.updateCredit(winTeam, loseTeam);
 
             }
             System.out.println("All games finished! You can use 4 to check the results.");

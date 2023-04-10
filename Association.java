@@ -1,6 +1,6 @@
 public class Association {
-    private Teams teams;
-    private Season season;
+    private final Teams teams;
+    private final Season season;
 
     // Takes no parameters
     public Association() {
