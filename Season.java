@@ -130,12 +130,7 @@ public class Season {
     }
 
     public static void playGames() {
-        Game game;
-        ArrayList<Team> teams;
-        Team winTeam;
-        Team loseTeam;
         String champion = "";
-
         if (schedule.isEmpty()) mainMenu();
 
         if (schedule.get(1).hasTeams()) {
@@ -149,29 +144,8 @@ public class Season {
             }
 
             // Decide winner
-            for (int i = 1; i < schedule.size(); i++) {
-                game = schedule.get(i);
-                teams = game.getTeams();
-                if (teams.get(0).averageCredit() < teams.get(1).averageCredit()) {
-                    winTeam = teams.get(1);
-                    loseTeam = teams.get(0);
-                } else {
-                    winTeam = teams.get(0);
-                    loseTeam = teams.get(1);
-                }
-                records.add(new Record(winTeam.getName(), loseTeam.getName(), gameNo, roundNo));
-                gameNo++;
+            champion = decideWinner(gameNo, roundNo);
 
-                // Add winner to currentTeamList if round = 1
-                if (roundNo == 1) {
-                    currentTeamList.add(winTeam);
-                }
-                champion = winTeam.getName();
-
-                // Update credit
-                updateCredit(winTeam, loseTeam);
-
-            }
             System.out.println("All games finished! You can use 4 to check the results.");
         } else {
             System.out.println("No game in the current round, please add teams to the round first!");
@@ -191,6 +165,39 @@ public class Season {
         }
 
         mainMenu();
+    }
+
+    private static String decideWinner(int gameNo, int roundNo) {
+        Game game;
+        ArrayList<Team> teams;
+        Team winTeam;
+        Team loseTeam;
+        String champion = "";
+
+        for (int i = 1; i < schedule.size(); i++) {
+            game = schedule.get(i);
+            teams = game.getTeams();
+            if (teams.get(0).averageCredit() < teams.get(1).averageCredit()) {
+                winTeam = teams.get(1);
+                loseTeam = teams.get(0);
+            } else {
+                winTeam = teams.get(0);
+                loseTeam = teams.get(1);
+            }
+            records.add(new Record(winTeam.getName(), loseTeam.getName(), gameNo, roundNo));
+            gameNo++;
+
+            // Add winner to currentTeamList if round = 1
+            if (roundNo == 1) {
+                currentTeamList.add(winTeam);
+            }
+            champion = winTeam.getName();
+
+            // Update credit
+            updateCredit(winTeam, loseTeam);
+
+        }
+        return champion;
     }
 
     public static void updateCredit(Team winTeam, Team loseTeam) {
