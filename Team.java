@@ -40,4 +40,22 @@ public class Team {
 
         return avgCredit;
     }
+
+    public static void updateCredit(Team winTeam, Team loseTeam) {
+        double difference = winTeam.averageCredit() - loseTeam.averageCredit();
+
+        ArrayList<Player> winTeamPlayers = winTeam.getPlayers().getPlayerList();
+        ArrayList<Player> loseTeamPlayers = loseTeam.getPlayers().getPlayerList();
+
+        for (Player player : winTeamPlayers) {
+            player.setCredit(player.getCredit() + (difference / 5));
+        }
+
+        for (Player player : loseTeamPlayers) {
+            player.setCredit(player.getCredit() + (difference / 5));
+        }
+
+        winTeam.getPlayers().setPlayerList(winTeamPlayers);
+        loseTeam.getPlayers().setPlayerList(loseTeamPlayers);
+    }
 }

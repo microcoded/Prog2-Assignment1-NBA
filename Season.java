@@ -163,7 +163,7 @@ public class Season {
 
 
                 // Update credit
-                updateCredit(winTeam, loseTeam);
+                Team.updateCredit(winTeam, loseTeam);
 
             }
             System.out.println("All games finished! You can use 4 to check the results.");
@@ -188,20 +188,20 @@ public class Season {
         mainMenu();
     }
 
-    private static void updateCredit(Team winTeam, Team loseTeam) {
-        Double difference = winTeam.averageCredit() - loseTeam.averageCredit();
-
-        ArrayList<Player> winTeamPlayers = winTeam.getPlayers().getPlayerList();
-        ArrayList<Player> loseTeamPlayers = loseTeam.getPlayers().getPlayerList();
-
-        for (Player player : winTeamPlayers) {
-            player.setCredit(player.getCredit() + (difference / 5));
-        }
-
-        for (Player player : loseTeamPlayers) {
-            player.setCredit(player.getCredit() + (difference / 5));
-        }
-    }
+//    private static void updateCredit(Team winTeam, Team loseTeam) {
+//        Double difference = winTeam.averageCredit() - loseTeam.averageCredit();
+//
+//        ArrayList<Player> winTeamPlayers = winTeam.getPlayers().getPlayerList();
+//        ArrayList<Player> loseTeamPlayers = loseTeam.getPlayers().getPlayerList();
+//
+//        for (Player player : winTeamPlayers) {
+//            player.setCredit(player.getCredit() + (difference / 5));
+//        }
+//
+//        for (Player player : loseTeamPlayers) {
+//            player.setCredit(player.getCredit() + (difference / 5));
+//        }
+//    }
 
     public static void displayResults() {
         // Header
