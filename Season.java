@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Season {
     private static ArrayList<Game> schedule = new ArrayList<>();
     private static ArrayList<Team> currentTeamList;
-    private static ArrayList<Record> records = new ArrayList<>();
+    private static final ArrayList<Record> records = new ArrayList<>();
 
     // Takes no parameters
     public Season() {
@@ -64,16 +64,16 @@ public class Season {
 
     private static void addTeam() {
         String scheduleTeamName;
-        Double gameNo = 1.0;
+        double gameNo = 1.0;
         int pos = 1;
-        String teamsOutput;
+        StringBuilder teamsOutput;
         while (currentTeamList.size() > 0) {
-            teamsOutput = "";
+            teamsOutput = new StringBuilder();
             System.out.println("The existing teams are as follows: ");
             for (Team team : currentTeamList) {
-                teamsOutput += (team.getName() + " ");
+                teamsOutput.append(team.getName()).append(" ");
             }
-            teamsOutput = teamsOutput.substring(0, (teamsOutput.length() - 1));
+            teamsOutput = new StringBuilder(teamsOutput.substring(0, (teamsOutput.length() - 1)));
             System.out.println(teamsOutput);
             System.out.println("Please enter the team's name that you want to schedule: ");
             scheduleTeamName = In.nextLine();
@@ -82,6 +82,7 @@ public class Season {
             for (Team team : currentTeamList) {
                 if (scheduleTeam == team) {
                     found = true;
+                    break;
                 }
             }
             if (!found) {

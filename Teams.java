@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
-import java.text.*;
 
 public class Teams {
     public static ArrayList<Team> teams = new ArrayList<>();
@@ -78,7 +76,7 @@ public class Teams {
 
             // Number of players
             ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
-            Integer playerCount = 0;
+            int playerCount = 0;
             double avgCredit = 0;
             double avgAge = 0;
             for (Player player : teamPlayers) {
@@ -344,7 +342,7 @@ public class Teams {
         ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
         for (int i = 0; i < teamPlayers.size(); i++) {
             Player player = teamPlayers.get(i);
-            if (player.getName().toLowerCase().equals(name.toLowerCase())) {
+            if (player.getName().equalsIgnoreCase(name)) {
                 playerExists = true;
                 playerIndex = i;
             }
@@ -397,7 +395,7 @@ public class Teams {
         ArrayList<Player> teamPlayers = team.getPlayers().getPlayerList();
         for (int i = 0; i < teamPlayers.size(); i++) {
             Player player = teamPlayers.get(i);
-            if (player.getName().toLowerCase().equals(name.toLowerCase())) {
+            if (player.getName().equalsIgnoreCase(name)) {
                 playerExists = true;
                 playerIndex = i;
             }
@@ -433,12 +431,12 @@ public class Teams {
         ArrayList<Player> winTeamPlayers = winTeam.getPlayers().getPlayerList();
         ArrayList<Player> loseTeamPlayers = loseTeam.getPlayers().getPlayerList();
 
-        for (int i = 0; i < winTeamPlayers.size(); i++) {
-            winTeamPlayers.get(i).setCredit(winTeamPlayers.get(i).getCredit() + (difference / 5));
+        for (Player winTeamPlayer : winTeamPlayers) {
+            winTeamPlayer.setCredit(winTeamPlayer.getCredit() + (difference / 5));
         }
 
-        for (int i = 0; i < loseTeamPlayers.size(); i++) {
-            loseTeamPlayers.get(i).setCredit(loseTeamPlayers.get(i).getCredit() + (difference / 5));
+        for (Player loseTeamPlayer : loseTeamPlayers) {
+            loseTeamPlayer.setCredit(loseTeamPlayer.getCredit() + (difference / 5));
         }
 
         winTeam.setPlayers(winTeamPlayers);

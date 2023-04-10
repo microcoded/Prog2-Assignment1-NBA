@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Team {
-    private String name;
+    private final String name;
     private Players players = new Players(new ArrayList<Player>());
 
 
@@ -62,7 +62,7 @@ public class Team {
     public Double averageCredit() {
         // Number of players
         ArrayList<Player> teamPlayers = this.getPlayers().getPlayerList();
-        Integer playerCount = 0;
+        int playerCount = 0;
 
         double avgCredit = 0;
         for (Player player : teamPlayers) {
