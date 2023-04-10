@@ -177,7 +177,7 @@ public class Season {
         for (int i = 1; i < schedule.size(); i++) {
             game = schedule.get(i);
             teams = game.getTeams();
-            if (teams.get(0).averageCredit() < teams.get(1).averageCredit()) {
+            if (teams.get(0).averageCredit() <= teams.get(1).averageCredit()) {
                 winTeam = teams.get(1);
                 loseTeam = teams.get(0);
             } else {
@@ -211,7 +211,7 @@ public class Season {
         }
 
         for (Player loseTeamPlayer : loseTeamPlayers) {
-            loseTeamPlayer.setCredit(loseTeamPlayer.getCredit() + (difference / 5));
+            loseTeamPlayer.setCredit(loseTeamPlayer.getCredit() - (difference / 5));
         }
 
         winTeam.setPlayers(winTeamPlayers);
